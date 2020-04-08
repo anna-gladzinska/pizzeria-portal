@@ -2,15 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Events.module.scss';
 
-const Events = ({ id }) => (
+const Events = ({ eventID }) => (
   <div className={styles.component}>
     <h2>Event view</h2>
-    {id}
+    {eventID}
   </div>
 );
 
 Events.propTypes = {
-  id: PropTypes.number,
+  eventID: PropTypes.number,
+};
+
+Events.defaultProps = {
+  eventID: 1,
 };
 
 export default Events;

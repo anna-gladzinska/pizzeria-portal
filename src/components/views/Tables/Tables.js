@@ -18,4 +18,9 @@ Tables.propTypes = {
   eventID: PropTypes.number,
 };
 
+Tables.defaultProps = {
+  bookingID: 1,
+  eventID: 1,
+};
+
 export default Tables;

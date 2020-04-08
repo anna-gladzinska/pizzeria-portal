@@ -2,15 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Order.module.scss';
 
-const Order = ({ id }) => (
+const Order = ({ orderID }) => (
   <div className={styles.component}>
     <h2>Order view</h2>
-    {id}
+    {orderID}
   </div>
 );
 
 Order.propTypes = {
-  id: PropTypes.number,
+  orderID: PropTypes.number,
+};
+
+Order.defaultProps = {
+  orderID: 1,
 };
 
 export default Order;

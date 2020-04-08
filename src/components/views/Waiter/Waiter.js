@@ -15,4 +15,8 @@ Waiter.propTypes = {
   orderID: PropTypes.number,
 };
 
+Waiter.defaultProps = {
+  orderID: 1,
+};
+
 export default Waiter;

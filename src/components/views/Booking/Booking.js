@@ -2,15 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Booking.module.scss';
 
-const Booking = ({ id }) => (
+const Booking = ({ bookingID }) => (
   <div className={styles.component}>
     <h2>Booking view</h2>
-    {id}
+    {bookingID}
   </div>
 );
 
 Booking.propTypes = {
-  id: PropTypes.number,
+  bookingID: PropTypes.number,
+};
+
+Booking.defaultProps = {
+  bookingID: 1,
 };
 
 export default Booking;
