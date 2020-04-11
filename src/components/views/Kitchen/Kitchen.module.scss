@@ -2,4 +2,20 @@
 
 .component {
   padding: $base-size;
+  margin: $component-margin 0;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.done {
+  background: #22bb33;
+  color: #fff;
+
+  &:hover {
+    background: #1c9929;
+  }
 }

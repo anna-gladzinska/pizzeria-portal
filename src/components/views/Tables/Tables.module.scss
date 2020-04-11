@@ -2,4 +2,49 @@
 
 .component {
   padding: $base-size;
+  margin: $component-margin 0;
+}
+
+.wrapper {
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.new {
+  background: #22bb33;
+  color: #fff;
+  margin: 0 0 0 10px;
+
+  &:hover {
+    background: #1c9929;
+  }
+}
+
+.event {
+  background: #f0ad4e;
+  margin: 0 0 0 10px;
+
+  &:disabled {
+    color: #945700;
+  }
+}
+
+.booked {
+  background: #eb5b5b;
+  margin: 0 0 0 10px;
+
+  &:disabled {
+    color: #470000;
+  }
+}
+
+.details {
+  background: #4d9cc9;
+  color: #fff;
+  margin: 0 0 0 10px;
+
+  &:hover {
+    background: #24688f;
+  }
 }
