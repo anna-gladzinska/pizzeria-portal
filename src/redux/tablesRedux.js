@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { api } from '../settings';
 
+
 /* selectors */
 export const getAll = ({tables}) => tables.data;
 export const getLoadingState = ({tables}) => tables.loading;
@@ -19,7 +20,7 @@ const CHANGE_STATUS = createActionName('CHANGE_STATUS');
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
-export const changeStatus = payload => ({payload, type: CHANGE_STATUS});
+export const changeStatus = (id, status) => ({ id, status, type: CHANGE_STATUS});
 
 /* thunk creators */
 export const fetchFromAPI = () => {
@@ -37,12 +38,17 @@ export const fetchFromAPI = () => {
   };
 };
 
-export const changeAPI = (tableID, status) => {
-  return (dispatch, getState) => {
+export const changeAPI = function(tableID, status) {
+  return dispatch => {
     dispatch(changeStatus(tableID, status));
-    console.log(tableID, status);
+
+    Axios
+      .put(`${api.url}/${api.tables}`, {id:tableID, status:status})
+      .then(res => res.data)
+      .catch(err => console.error('eror', err));
   };
 };
+
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
@@ -75,7 +81,18 @@ export default function reducer(statePart = [], action = {}) {
         },
       };
     }
-
+    case CHANGE_STATUS: {
+      return {
+        ...statePart,
+        loading: {
+          active: false,
+          error: false,
+        },
+        data: statePart.data.map(order =>
+          order.id === action.id ?
+            { ...order, status: action.status } : order),
+      };
+    }
     default:
       return statePart;
   }

@@ -31,7 +31,7 @@ class Waiter extends React.Component {
       case 'free':
         return (
           <>
-            <Button onClick={() => changeTable(tableID, 'done')} >thinking</Button>
+            <Button onClick={() => changeTable(tableID, 'done')}>thinking</Button>
             <Button>new order</Button>
           </>
         );
@@ -41,19 +41,19 @@ class Waiter extends React.Component {
         );
       case 'ordered':
         return (
-          <Button>prepared</Button>
+          <Button onClick={() => changeTable(tableID, 'done')}>prepared</Button>
         );
       case 'prepared':
         return (
-          <Button>delivered</Button>
+          <Button onClick={() => changeTable(tableID, 'done')}>delivered</Button>
         );
       case 'delivered':
         return (
-          <Button>paid</Button>
+          <Button onClick={() => changeTable(tableID, 'done')}>paid</Button>
         );
       case 'paid':
         return (
-          <Button>free</Button>
+          <Button onClick={() => changeTable(tableID, 'done')}>free</Button>
         );
       default:
         return null;
