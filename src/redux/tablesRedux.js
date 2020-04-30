@@ -43,9 +43,11 @@ export const changeAPI = function(tableID, status) {
     dispatch(changeStatus(tableID, status));
 
     Axios
-      .put(`${api.url}/${api.tables}`, {id:tableID, status:status})
-      .then(res => res.data)
-      .catch(err => console.error('eror', err));
+      .put(`${api.putURL}/${api.tables}/${tableID}`, {status:status})
+      .then(res => {
+        dispatch(fetchFromAPI());
+      })
+      .catch(err => console.error('error', err));
   };
 };
 
@@ -79,18 +81,6 @@ export default function reducer(statePart = [], action = {}) {
           active: false,
           error: action.payload,
         },
-      };
-    }
-    case CHANGE_STATUS: {
-      return {
-        ...statePart,
-        loading: {
-          active: false,
-          error: false,
-        },
-        data: statePart.data.map(order =>
-          order.id === action.id ?
-            { ...order, status: action.status } : order),
       };
     }
     default:
